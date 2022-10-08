@@ -25,13 +25,22 @@ Add MyEntity queries and mutations to service-entity : des3, after des2, 5d
 Add MyEntity queries to service-ui : des4, after des3, 10d
 ```
 
-## schism-entity tasks
+### schism-entity tasks
 - create permissions and permission groups -> lock down access to super-user mutations
 - add range field to entity object
 
-## Deployment Tasks
+### Deployment Tasks
 - Investigate Dockerfiles for each repo
 - Create a kubenernetes cluster and service-level configurations for each repo
 
-## Tech Debt
+### Tech Debt
 - Refactor name of schism-service to schism-world
+
+# Local Development Tips:
+* Start the services in this order:
+  1. schism-service and its redis cache
+  1. schism-entity
+  1. schism-gateway (compose the supergraph first, if necessary)
+  1. schism-ui
+* Login through schism-ui and grab the authorization token. It can be added to apollo sandbox as a Shared Header to provide authentication and identity.
+* The federated graph is available on port 4000, and the subgraphs for schism-service and schism-entity are available on 4010 and 4011, respectively.
