@@ -13,3 +13,15 @@ graph TD
 ```
 
 # Road-Map
+This roadmap depicts project goals at a high level.
+```mermaid
+gantt
+dateFormat  YYY-MM-DD
+title High-Level Road Map
+
+section Entities
+Standup gateway :done, des1, 2022-09-15, 2022-10-04
+Standup service-entity :done, des2, 2022-10-04, 2022-10-08
+Add MyEntity queries and mutations to service-entity : des3, after des2, 5d
+Add MyEntity queries to service-ui : des4, after des3, 10d
+```
