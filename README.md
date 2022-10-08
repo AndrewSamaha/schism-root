@@ -13,11 +13,10 @@ graph TD
 ```
 
 # Road-Map
-This roadmap depicts project goals at a high level.
 ```mermaid
 gantt
 dateFormat  YYY-MM-DD
-title High-Level Road Map
+title Near-Term Project Goals
 
 section Entities
 Standup gateway :done, des1, 2022-09-15, 2022-10-04
@@ -25,3 +24,14 @@ Standup service-entity :done, des2, 2022-10-04, 2022-10-08
 Add MyEntity queries and mutations to service-entity : des3, after des2, 5d
 Add MyEntity queries to service-ui : des4, after des3, 10d
 ```
+
+## schism-entity tasks
+- create permissions and permission groups -> lock down access to super-user mutations
+- add range field to entity object
+
+## Deployment Tasks
+- Investigate Dockerfiles for each repo
+- Create a kubenernetes cluster and service-level configurations for each repo
+
+## Tech Debt
+- Refactor name of schism-service to schism-world
