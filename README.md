@@ -25,7 +25,13 @@ Add MyEntity queries and mutations to service-entity : des3, after des2, 5d
 Add MyEntity queries to service-ui : des4, after des3, 10d
 ```
 
-### schism-entity tasks
+### Schism-entity Tasks
+- consider creating different EntityInput types for create and update mutations with different required fields. E.g., update might only require an id and ownerId (and one other field to do the update). This would make it impossible to arbitrarialy update field's on another player's entities. 
+- Add mutations for:
+  - Creating new units
+  - Damaging another player's units
+  - Performing unit actions
+- need to decide whether and how to store, validate, and represent unit actions server-side. E.g., maybe all actions would initially run client-side while they're simultaneously being validated and disseminated to other clients
 - create permissions and permission groups -> lock down access to super-user mutations
 - add range field to entity object
 
