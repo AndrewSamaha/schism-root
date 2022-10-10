@@ -25,6 +25,15 @@ Add MyEntity queries and mutations to service-entity : des3, after des2, 5d
 Add MyEntity queries to service-ui : des4, after des3, 10d
 ```
 
+### Schism-UI Tasks
+- Fix dreadful css
+- Add getEntitiesICanSee query to get entities
+  - [Done] Removed creation of mock entities in entityReducer
+  - Found that world/CHUNK queries happen in ChunkManager. Perhaps a good place to put getEntitiesICanSee is EntityManager
+  - Remaining questions:
+    - What a reasonable way and rate to call the query repeatedly?
+  
+
 ### Schism-entity Tasks
 - consider creating different EntityInput types for create and update mutations with different required fields. E.g., update might only require an id and ownerId (and one other field to do the update). This would make it impossible to arbitrarialy update field's on another player's entities. 
 - Add mutations for:
