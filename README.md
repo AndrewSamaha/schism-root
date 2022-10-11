@@ -35,6 +35,7 @@ Add MyEntity queries to service-ui : des4, after des3, 10d
   
 
 ### Schism-entity Tasks
+- [done] Need a way to add fields/methods to entities received from the backend
 - consider creating different EntityInput types for create and update mutations with different required fields. E.g., update might only require an id and ownerId (and one other field to do the update). This would make it impossible to arbitrarialy update field's on another player's entities. 
 - Add mutations for:
   - Creating new units
