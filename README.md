@@ -51,6 +51,30 @@ Add MyEntity queries to service-ui : des4, after des3, 10d
 
 ### Tech Debt
 - Refactor name of schism-service to schism-world
+- Choose either using x,y,z fields or array (schism-entity sends back xyz, schism-ui uses both)
+- Use a dictionary for myUnits in schism-ui instead of an array
+  ```
+  // Update header text
+  Object.entries(dict).map(([key, entity]) => console.log(entity.id))
+  // things to check
+  // map - done
+  // .length
+  // myUnits 
+  ```
+- Pattern for updating myEntities (dict) from server: https://jsfiddle.net/s92qgL3c/
+```
+console.log('original myUnits:')
+const refToObjOne = myUnits.obj1;
+console.log('refToObjOne', refToObjOne)
+const myEntitiesObj = Object.entries(unitsICanSee)
+.filter(([key, entity]) => entity.ownerId === 'me')
+.reduce((acc, [key, entity]) => {
+  if (entity.ownerId !== 'me') return acc;
+  assign(acc, { [key]: entity })
+  return acc;
+}, myUnits)
+console.log(myEntitiesObj)
+```
 
 # Local Development Tips:
 * Start the services in this order:
