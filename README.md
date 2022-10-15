@@ -58,8 +58,8 @@ Add MyEntity queries to service-ui : des4, after des3, 10d
   Object.entries(dict).map(([key, entity]) => console.log(entity.id))
   // things to check
   // map - done
-  // .length
-  // myUnits 
+  // .length- done
+  // myUnits - done
   ```
 - Pattern for updating myEntities (dict) from server: https://jsfiddle.net/s92qgL3c/
 ```
