@@ -22,8 +22,8 @@ section Entities
 Standup gateway :done, des1, 2022-09-15, 2022-10-04
 Standup service-entity :done, des2, 2022-10-04, 2022-10-08
 Convert myUnits to arrays :done, des3, after des2, 2022-10-15
-Refactor service-entity's position type to use array : des5, after des4, 5d
-Add MyEntity queries and mutations to service-entity : des6, after des5, 5d
+Refactor service-entity's position type to use array : des4, after des3, 5d
+Add MyEntity queries and mutations to service-entity : des5, after des4, 5d
 Add MyEntity queries to service-ui : des6, after des5, 10d
 ```
 
