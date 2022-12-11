@@ -55,3 +55,11 @@ Add MyEntity queries to service-ui : des6, after des5, 10d
   1. schism-ui
 * Login through schism-ui and grab the authorization token. It can be added to apollo sandbox as a Shared Header to provide authentication and identity.
 * The federated graph is available on port 4000, and the subgraphs for schism-service and schism-entity are available on 4010 and 4011, respectively.
+
+# Repo Setup
+```
+npm i -D husky @commitlint/cli @commitlint/config-conventional @commitlint/cz-commitlint
+npm pkg set scripts.prepare="husky install"
+npm run prepare
+commitizen init cz-conventional-changelog --save-dev --save-exact
+```
