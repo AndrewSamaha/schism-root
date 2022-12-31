@@ -12,41 +12,6 @@ graph TD
     C --> F(sql)
 ```
 
-# Road-Map
-```mermaid
-gantt
-dateFormat  YYY-MM-DD
-title Near-Term Project Goals
-
-section Entities
-Standup gateway :done, des1, 2022-09-15, 2022-10-04
-Standup service-entity :done, des2, 2022-10-04, 2022-10-08
-Convert myUnits to arrays :done, des3, after des2, 2022-10-15
-Refactor service-entity's position type to use array : des4, after des3, 2022-10-16
-Add MyEntity queries and mutations to service-entity : des5, after des4, 5d
-Add MyEntity queries to service-ui : des6, after des5, 10d
-```
-
-### Schism-UI Tasks
-- Fix dreadful css
-
-### Schism-entity Tasks
-- Add mutations for:
-  - Creating new units
-  - Damaging another player's units
-  - Performing unit actions
-- consider creating different EntityInput types for create and update mutations with different required fields. E.g., update might only require an id and ownerId (and one other field to do the update). This would make it impossible to arbitrarialy update field's on another player's entities. 
-- need to decide whether and how to store, validate, and represent unit actions server-side. E.g., maybe all actions would initially run client-side while they're simultaneously being validated and disseminated to other clients
-- create permissions and permission groups -> lock down access to super-user mutations
-- add range field to entity object
-
-### Deployment Tasks
-- Investigate Dockerfiles for each repo
-- Create a kubenernetes cluster and service-level configurations for each repo
-
-### Other Tech Debt
-
-
 # Local Development Tips:
 * Start the services in this order:
   1. schism-service and its redis cache
@@ -55,8 +20,37 @@ Add MyEntity queries to service-ui : des6, after des5, 10d
   1. schism-ui
 * Login through schism-ui and grab the authorization token. It can be added to apollo sandbox as a Shared Header to provide authentication and identity.
 * The federated graph is available on port 4000, and the subgraphs for schism-service and schism-entity are available on 4010 and 4011, respectively.
+* Opening up a terminal for each repo:
+```
+set-title() {
+    # Set the PS1 title escape sequence; see "Customizing the terminal window title" here: 
+    # https://wiki.archlinux.org/index.php/Bash/Prompt_customization#Customizing_the_terminal_window_title
+    TITLE="\[\e]2;$@\a\]" 
+    PS1=${PS1_BAK}${TITLE}
+}
 
-# Repo Setup
+if [[ -z "$PS1_BAK" ]]; then # If length of this str is zero (see `man test`)
+    PS1_BAK=$PS1 
+fi
+
+if [[ -n "$TITLE_DEFAULT" ]]; then # If length of this is NONzero (see `man test`)
+    set-title "$TITLE_DEFAULT"
+fi
+
+schism_tabs() {
+    export PREP="git fetch --all && git status"
+    cd /home/andrew/Development/schism/schism-ui
+    git fetch --all && git status
+    gnome-terminal --tab --working-directory=/home/andrew/Development/schism/schism-gateway -- bash -ic "export TITLE_DEFAULT='Schism Gateway'; $PREP; bash"
+    gnome-terminal --tab --working-directory=/home/andrew/Development/schism/schism-service -- bash -ic "export TITLE_DEFAULT='Schism Service'; $PREP; bash"
+    gnome-terminal --tab --working-directory=/home/andrew/Development/schism/schism-entity -- bash -ic "export TITLE_DEFAULT='Schism Entity'; $PREP; exec bash"
+    gnome-terminal --tab --working-directory=/home/andrew/Development/schism/schism-assets -- bash -ic "export TITLE_DEFAULT='Schism Assets'; $PREP; exec bash"
+    gnome-terminal --tab --working-directory=/home/andrew/Development/schism/schism-root -- bash -ic "export TITLE_DEFAULT='Schism Root'; $PREP; exec bash"
+    set-title "Schism UI"
+}
+```
+
+# New Repo Setup
 ```
 npm i -D husky @commitlint/cli @commitlint/config-conventional @commitlint/cz-commitlint
 npm pkg set scripts.prepare="husky install"
